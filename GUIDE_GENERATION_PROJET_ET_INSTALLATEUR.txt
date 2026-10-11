@@ -1,0 +1,190 @@
+GUIDE COMPLET - GENERATION DU PROJET ET INSTALLATEUR WINDOWS
+
+Projet: Vente en Ligne (Next.js + Electron + SQLite)
+Objectif: Generer le projet sans erreur et produire un installateur .exe utilisable sur un autre PC.
+
+====================================================================
+1) PRE-REQUIS OBLIGATOIRES (WINDOWS)
+====================================================================
+
+1.1 Logiciels a installer
+- Node.js 20 LTS (recommande pour stabilite)
+- Git
+- Visual Studio Build Tools 2022
+
+1.2 Composants a cocher dans Visual Studio Build Tools
+- Desktop development with C++
+- MSVC v143
+- Windows 10/11 SDK
+- C++ CMake tools for Windows
+
+1.3 Conditions machine recommandees
+- Espace disque libre: minimum 15 a 20 Go
+- Connexion internet stable pour installer les dependances
+- Droits administrateur recommandes pendant l'installation des outils
+
+====================================================================
+2) PREPARATION PROPRE DU PROJET
+====================================================================
+
+Ouvrir PowerShell dans le dossier du projet:
+c:\john\Vente en ligne
+
+Executer:
+
+npm cache clean --force
+if (Test-Path node_modules) { Remove-Item node_modules -Recurse -Force }
+if (Test-Path package-lock.json) { Remove-Item package-lock.json -Force }
+npm install
+
+Verifier les versions:
+
+node -v
+npm -v
+
+Recommandation:
+- Garder une seule version de Node active sur la machine.
+- Eviter les melanges de versions Node tres recentes avec modules natifs.
+
+====================================================================
+3) LANCEMENT EN MODE DEVELOPPEMENT
+====================================================================
+
+Commande:
+
+npm run dev -- -p 3010
+
+Ouvrir ensuite:
+http://localhost:3010
+
+Si la page s'ouvre, le projet web est operationnel.
+
+====================================================================
+4) GENERER L'APPLICATION DESKTOP (ELECTRON)
+====================================================================
+
+Commande principale:
+
+npm run electron:build
+
+Cette commande:
+- Build Next.js
+- Rebuild les modules natifs Electron (ex: better-sqlite3)
+- Prepare les fichiers Electron
+- Genere les executables Windows via electron-builder
+
+Sortie attendue:
+- Dossier: dist-electron-v23
+
+====================================================================
+5) FONCTIONNALITE INSTALLATEUR (IMPORTANT)
+====================================================================
+
+Le projet est configure pour generer 2 formats:
+
+5.1 Installateur Windows (NSIS)
+- Fichier de type: "Vente en Ligne Setup ... .exe"
+- Installation classique avec assistant
+- Raccourci Bureau et Menu Demarrer deja prevus par la config
+
+5.2 Version portable
+- Fichier de type: "Vente en Ligne ... portable.exe"
+- Lance l'application sans installation formelle
+
+Comment installer sur un autre PC:
+1. Copier le fichier Setup.exe sur la machine cible
+2. Clic droit > Executer en tant qu'administrateur (recommande)
+3. Choisir le dossier d'installation
+4. Terminer l'installation
+5. Lancer via raccourci Bureau/Menu Demarrer
+
+====================================================================
+6) SIGNATURE NUMERIQUE (OPTION RECOMMANDEE)
+====================================================================
+
+Pourquoi:
+- Reduire les alertes SmartScreen
+- Renforcer la confiance utilisateur
+
+Commande de build signe:
+
+npm run electron:build:signed
+
+Variables d'environnement requises:
+- CSC_LINK
+- CSC_KEY_PASSWORD
+
+Sans ces variables, la commande stoppera volontairement.
+
+====================================================================
+7) ERREURS COURANTES ET SOLUTIONS
+====================================================================
+
+7.1 Erreur module natif better-sqlite3 / NODE_MODULE_VERSION
+Solution:
+
+npm run electron:rebuild-native
+npm run electron:build
+
+7.2 Erreurs de dependances cassees
+Solution:
+- Supprimer node_modules + package-lock.json
+- Reinstaller avec npm install
+
+7.3 Erreurs "no space left" / disque plein
+Solution:
+- Liberer de l'espace (au moins 15 Go libres)
+- Relancer le build
+
+7.4 Erreurs de compilation C++ (node-gyp)
+Solution:
+- Verifier installation Visual Studio Build Tools + composants C++
+- Redemarrer terminal
+- Relancer npm install puis build
+
+7.5 SmartScreen bloque l'installateur
+Solution:
+- Utiliser "Informations complementaires" > "Executer quand meme"
+- Ou signer l'application (section 6)
+
+====================================================================
+8) CHECKLIST RAPIDE AVANT GENERATION
+====================================================================
+
+- Node 20 LTS installe et actif
+- npm install execute sans erreur
+- Espace disque suffisant
+- Build Tools C++ installes
+- Pas de process Node/Electron ancien restant en arriere-plan
+- Commande finale lancee:
+  npm run electron:build
+
+====================================================================
+9) COMMANDES FINALES RESUMEES
+====================================================================
+
+Installation propre:
+npm cache clean --force
+if (Test-Path node_modules) { Remove-Item node_modules -Recurse -Force }
+if (Test-Path package-lock.json) { Remove-Item package-lock.json -Force }
+npm install
+
+Lancement dev:
+npm run dev -- -p 3010
+
+Build installateur + portable:
+npm run electron:build
+
+Build signe:
+npm run electron:build:signed
+
+====================================================================
+10) RESULTAT ATTENDU
+====================================================================
+
+Generation reussie:
+- Application web fonctionnelle en local
+- Executables Windows generes dans dist-electron-v23
+- Installateur Setup.exe pret a etre partage et installe
+
+Fin du guide.

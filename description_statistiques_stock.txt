@@ -1,0 +1,85 @@
+Description détaillée de l'interface "Statistiques de Stock"
+
+---------------------------------------------------------
+1. En-tête de l'application (en haut)
+---------------------------------------------------------
+* Gestion du Stock : Titre du module.
+* 2 produits enregistrés : Nombre total de modèles différents suivis par le système (ici "Ensemble short" et "T-shirt").
+* Barre de recherche : Permet de filtrer rapidement un produit par son nom.
+* Menu Entreprise (Jotsoa) : Sélecteur multi-compte pour changer de base de données si l'utilisateur gère plusieurs entreprises.
+
+---------------------------------------------------------
+2. Onglets
+---------------------------------------------------------
+* Liste des produits : Onglet pour voir la liste classique (pour importer, modifier le prix, etc.).
+* Statistiques : L'onglet actuel, focalisé sur l'analyse et le suivi financier.
+
+---------------------------------------------------------
+3. Cartes de Synthèse (Le Dashboard)
+---------------------------------------------------------
+Ces 5 cases donnent une vue instantanée de l'état de l'entreprise globalement (somme des produits).
+
+1. Valeur actuelle (0 MGA) :
+   - Fonction : Indique la valeur monétaire (prix de vente) du stock physiquement présent.
+2. Qté disponible (9 articles) :
+   - Fonction : Nombre total d'articles en stock (ici 2 ensembles + 7 t-shirts = 9).
+3. Total déjà vendu (0 MGA) :
+   - Fonction : Chiffre d'affaires généré par les commandes confirmées (Statut : Payé ou Livré).
+4. Total en attente (0 MGA) :
+   - Fonction : Valeur des commandes créées mais pas encore confirmées (En attente de paiement ou de livraison). Permet de ne pas vendre deux fois le même article.
+5. Total Non Vendu (0 MGA) :
+   - Fonction : Représente la valeur des articles "dormants". C'est l'argent qui reste à encaisser (Qté Restants x Prix).
+
+---------------------------------------------------------
+4. Barre de Message d'Alerte
+---------------------------------------------------------
+* Message : "Aucune quantité en attente pour le moment."
+* Fonction : Indicateur de sécurité.
+   - S'il est vert : Aucun blocage, tout est fluide.
+   - S'il devient orange : Le système alerte qu'il y a des articles réservés mais non payés.
+
+---------------------------------------------------------
+5. Section : Tableau Détaillé par Produit
+---------------------------------------------------------
+C'est le coeur de l'outil. L'entête rouge contient un bouton très important :
+* Exporter (.zip) :
+   - Fonction : Génère un téléchargement d'un dossier ZIP. Ce dossier contient un fichier JSON qui enregistre l'état exact à cet instant T de ce tableau (toutes les valeurs, tous les codes, toutes les quantités). C'est parfait pour faire un backup ou pour auditer les comptables.
+
+Colonnes du Tableau :
+Le tableau décompose les cartes de synthèse produit par produit sur 10 colonnes structurées avec des séparateurs verticaux pour une lecture nette :
+
+1. Produit : Nom du modèle + indicateurs (Nombre de tailles/couleurs différentes et Etat du stock).
+2. Valeur en stock : Valeur monétaire restante pour ce modèle.
+3. Qté Stock : Combien en reste-t-il physiquement.
+4. Valeur Vendue : Chiffre d'affaires confirmé pour ce modèle.
+5. Qté Vendue : Nombre d'unités sorties.
+6. Valeur Attente : Argent bloqué dans les paniers non finalisés.
+7. Qté Attente : Articles en cours de réservation.
+8. Valeur Non Vendu : Valeur du stock mort pour ce produit spécifique.
+9. Qté Non Vendue : Indique la quantité disponible (identique à Qté Stock tant qu'il n'y a pas de réservation).
+10. Bouton Flèche (Accordéon) : Cliquez pour dérouler les détails "intelligents".
+
+---------------------------------------------------------
+6. Fonctionnalité : Détail Intelligent des Variantes (La partie dépliée)
+---------------------------------------------------------
+Ici, le système montre comment il suit la traçabilité absolue des codes.
+
+* En-tête de variante : "Ensemble short - L / Noir"
+   - Affiche des badges rapides : Stock: 2, Vendu: 0, Attente: 0.
+* Les 4 blocs de codes : C'est la fonctionnalité la plus avancée. Elle compare les codes importés du stock avec les commandes passées :
+
+   1. Codes encore en stock (Encadré Jaune) :
+      - Affiche TOUS les codes enregistrés à l'importation pour cette taille/couleur.
+      - Exemple : AA-005(Noir),AB-015(Noir).
+   2. Codes déjà vendus (Encadré Vert) :
+      - Liste les codes scannés/cliqués lors des ventes Live ou des Commandes livrées.
+   3. Codes en attente (Encadré Orange) :
+      - Codes qui sont dans le panier d'un client qui a l'intention d'acheter.
+   4. Codes non vendus (Encadré Rouge) :
+      - Fonction clé : Cette zone fait le calcul (Importés - Vendus - En Attente).
+      - Résultat : Elle ne montre que les articles que le vendeur peut VRAIMENT vendre tout de suite. C'est un outil anti-perte essentiel !
+
+---------------------------------------------------------
+7. Ligne TOTAL GLOBAL
+---------------------------------------------------------
+* Fonction : Rappel en bas du tableau. Somme de toutes les colonnes pour vérifier rapidement si les totaux correspondent aux chiffres des cartes en haut. C'est un repère visuel pour éviter les erreurs de lecture.

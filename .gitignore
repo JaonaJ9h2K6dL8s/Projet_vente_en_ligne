@@ -1,0 +1,179 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+/dist-electron*
+/c/
+*.zip
+*.exe
+*.blockmap
+*.asar
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files (can opt-in for committing if needed)
+.env*
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# Auto-generated entries
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build outputs
+dist/
+build/
+*.log
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+
+# Sensitive files (auto-detected)
+build
+build-v25.log
+build.err
+build.err.log
+build.exit.txt
+build.full.err.log
+build.full.out.log
+build.log
+build.out.log
+build.pid.txt
+builder_run.log
+build_apk.log
+build_apk.ps1
+build_full.err.log
+build_full.out.log
+build_log.txt
+build_log2.txt
+build_tmp.log
+dist-electron-fixed
+dist-electron-v39
+dist-electron-v40
+eb-v25-final.log
+electron-build-name.log
+electron-build-portable.log
+electron-build.err.log
+electron-build.out.log
+electron-build.pid.txt
+electron-builder-only.err.log
+electron-builder-only.out.log
+electron-builder-only.pid.txt
+electron-builder-v25.log
+electron_builder_v26.log
+electron_build_full.log
+nextbuild-v25.log
+next_build.log
+next_build_full.log
+node_modules
+nsis-background.log
+nsis-build.log
+nsis-dedicated.log
+nsis-detached.err.log
+nsis-detached.out.log
+nsis-detached2.err.log
+nsis-detached2.out.log
+nsis-detached3.err.log
+nsis-detached3.out.log
+nsis-final.log
+nsis-final2.log
+nsis-nodecli.log
+nsis-only.err.log
+nsis-only.out.log
+nsis-run.err.log
+nsis-run.out.log
+portable-build.log
+prep.log
+prepare.err.log
+prepare.out.log
+prepare_electron.log
+prep_run.log
+rebuild_native.log
+run_build.bat
+run_build.js
+server.err.log
+server.log
+stock-cleanup-direct.log
+tsc-v25.log
+tsconfig.tsbuildinfo
+typecheck-delete-message.log
+typecheck-stock-cleanup.log
+typecheck-stock-reset.log
+typecheck.log
+
+# Local data not needed on another device
+*.apk
+logs/
+runtime-login-test-data/
+tmp_asar_v27/
+tmp-userdata-login-test.db
+tmp_main_v27.js
+proc15436.txt
+.npm-cache/
+.runtime-next/
+.tools/
+.dbg/
+.trae/
+
+# Test files and old backups
+test-db.js
+test_db*.js
+test_products.json
+data/test.db
+data/*backup*.db
+data/*.before-cleanup.bak
+data/database.sqlite
+
+# Stray file
+'
+

@@ -1,0 +1,67 @@
+{
+  "boutique": "Valinia ",
+  "dateExport": "2026-09-20T16:14:44.547Z",
+  "produits": [
+    {
+      "id": "ef0e2b10-cd26-402e-b119-a27bf3f594e2",
+      "produit": "T-shirt ",
+      "quantite": 7,
+      "dateSortie": "2026-09-18T18:15:55.070Z",
+      "codes": [
+        {
+          "code": "AA-014",
+          "taille": "XXL",
+          "couleur": "Bleu"
+        },
+        {
+          "code": "AA-015",
+          "taille": "XXL",
+          "couleur": "Bleu"
+        },
+        {
+          "code": "AA-016",
+          "taille": "XXL",
+          "couleur": "Bleu"
+        },
+        {
+          "code": "AA-017",
+          "taille": "XXL",
+          "couleur": "Bleu"
+        },
+        {
+          "code": "AA-018",
+          "taille": "XXL",
+          "couleur": "Bleu"
+        },
+        {
+          "code": "AA-001",
+          "taille": "L",
+          "couleur": "Noir"
+        },
+        {
+          "code": "AA-003",
+          "taille": "L",
+          "couleur": "Noir"
+        }
+      ]
+    },
+    {
+      "id": "b560be09-c4b7-41d5-9bbc-a23dd4dd3182",
+      "produit": "Ensemble short ",
+      "quantite": 2,
+      "dateSortie": "2026-09-18T18:15:32.363Z",
+      "codes": [
+        {
+          "code": "AA-005(Noir),AB-015(Noir)",
+          "taille": "L",
+          "couleur": "Noir"
+        },
+        {
+          "code": "AA-002(Noir),AB-017(Noir)",
+          "taille": "L",
+          "couleur": "Noir"
+        }
+      ]
+    }
+  ]
+}
